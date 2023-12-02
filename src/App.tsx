@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { changePopular } from './redux/playlists/playlistsSlice';
+import { RootState } from './redux/store';
 
 export default function App() {
   const [song, setSong] = useState(null);
+  const discover = useSelector((state: RootState) => state.playlists.popular);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const url =
@@ -17,7 +22,6 @@ export default function App() {
     async function getData() {
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(data);
       const song = new Audio(data.data[0].preview);
       setSong(song);
     }
@@ -34,6 +38,15 @@ export default function App() {
       >
         Play
       </button>
+      <button
+        onClick={() => {
+          dispatch(changePopular());
+        }}
+        className="bg-red-700"
+      >
+        change state
+      </button>
+      {console.log(discover)}
     </>
   );
 }
