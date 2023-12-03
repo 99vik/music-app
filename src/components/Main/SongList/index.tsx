@@ -1,4 +1,5 @@
-import Song, { SongType } from '../Song';
+import Song from '../Song';
+import { SongType } from '../Song/songType';
 
 function Songlist({ songs }: { songs: SongType[] }) {
   console.log(songs);
@@ -6,7 +7,7 @@ function Songlist({ songs }: { songs: SongType[] }) {
     return <Song key={song.id} song={song} />;
   });
   return (
-    <div className="pb-36 mt-8 justify-items-center h-screen overflow-y-scroll no-scrollbar grid max-[950px]:grid-cols-2 max-[1200px]:grid-cols-3 max-[1450px]:grid-cols-4 grid-cols-5 gap-y-8">
+    <div className="pb-36 mt-12 justify-items-center h-screen overflow-y-scroll no-scrollbar grid max-[950px]:grid-cols-2 max-[1200px]:grid-cols-3 max-[1450px]:grid-cols-4 grid-cols-5 gap-y-10">
       {displayedSongs}
     </div>
   );

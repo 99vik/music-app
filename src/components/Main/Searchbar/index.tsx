@@ -2,7 +2,7 @@ import { FiSearch } from 'react-icons/fi';
 
 function Searchbar() {
   return (
-    <div className="bg-violet-900/30 focus-within:border-violet-600 my-5 transition border border-violet-500/20 rounded-full w-[300px] flex items-center">
+    <div className="bg-violet-900/30 focus-within:border-violet-600 mt-5 transition border border-violet-500/20 rounded-full w-[300px] flex items-center">
       <label htmlFor="search" className="cursor-pointer">
         <FiSearch className="text-white w-5 h-5 ml-4" />
       </label>
