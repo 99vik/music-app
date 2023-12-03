@@ -1,12 +1,20 @@
 import { SongType } from './songType';
 import { FaRegPlayCircle } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { setCurrentSong } from '../../../redux/musicPlayer/musicPlayerSlice';
 
 function Song({ song }: { song: SongType }) {
-  console.log(song);
+  const dispatch = useDispatch();
+
   return (
-    <div className="text-white group hover:bg-violet-700 transition cursor-pointer flex flex-col w-[220px] bg-violet-500/30 rounded-lg p-2">
+    <div
+      onClick={() => {
+        dispatch(setCurrentSong(song));
+      }}
+      className="text-white group hover:bg-violet-700 transition cursor-pointer flex flex-col w-[200px] bg-violet-500/30 rounded-lg p-2"
+    >
       <div className="relative">
-        <div className="h-full w-full absolute group-hover:bg-neutral-600/40 transition rounded bg-transparent flex justify-center items-center">
+        <div className="h-full w-full absolute group-hover:bg-neutral-600/50 transition rounded bg-transparent flex justify-center items-center">
           <FaRegPlayCircle className="h-12 w-12 group-hover:text-violet-200 transition text-violet-200/0" />
         </div>
         <img src={song.album.cover_medium} alt="" className="w-full rounded" />

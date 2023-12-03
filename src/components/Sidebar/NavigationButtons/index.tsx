@@ -6,9 +6,10 @@ function NavigationButtons() {
   const dispatch = useDispatch();
   const [activeButton, setActiveButton] = useState('Discover');
 
-  const displayedButtons = links.map((link) => {
+  const displayedButtons = links.map((link, index) => {
     return (
       <button
+        key={index}
         className={`${
           activeButton === link.name
             ? 'bg-white/10 text-violet-500'
