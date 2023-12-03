@@ -10,8 +10,10 @@ function Main() {
   const { data, status } = useGetViewQuery(playlistIDs[currentView]);
 
   return (
-    <div className="bg-gradient-to-br flex-1 flex flex-col from-[#0b011b] h-screen overflow-y-hidden to-violet-900">
-      <p>{currentView}</p>
+    <div className="bg-gradient-to-br p-4 flex-1 flex flex-col from-[#0b011b] h-screen overflow-y-hidden to-violet-950">
+      <p className="text-white mt-4 text-3xl text-center font-semibold">
+        {currentView}
+      </p>
       {currentView === 'Discover' && <Searchbar />}
       <div>
         {status === 'pending' ? (
