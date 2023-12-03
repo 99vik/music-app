@@ -1,46 +1,13 @@
-import { useDispatch } from 'react-redux';
-import {
-  changeToDiscover,
-  changeToHipHop,
-  changeToPop,
-  changeToRock,
-} from '../../redux/currentMainView/currentMainViewSlice';
+import NavigationButtons from './NavigationButtons';
 
 function Sidebar() {
-  const dispatch = useDispatch();
-
   return (
-    <div className="w-1/4 bg-neutral-400 p-4">
-      <p>MusicApp</p>
-      <div className="flex flex-col items-start">
-        <button
-          onClick={() => {
-            dispatch(changeToDiscover());
-          }}
-        >
-          Discover
-        </button>
-        <button
-          onClick={() => {
-            dispatch(changeToPop());
-          }}
-        >
-          Pop
-        </button>
-        <button
-          onClick={() => {
-            dispatch(changeToHipHop());
-          }}
-        >
-          Hip-Hop
-        </button>
-        <button
-          onClick={() => {
-            dispatch(changeToRock());
-          }}
-        >
-          Rock
-        </button>
+    <div className="w-52 bg-[#0e071d] p-4 border-r border-black">
+      <p className="text-white text-3xl my-4 text-center font-bold ">
+        MusicApp
+      </p>
+      <div className="flex flex-col font-semibold gap-4 mt-10 text-lg text-white/80 items-start">
+        <NavigationButtons />
       </div>
     </div>
   );

@@ -1,22 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// interface Playlist {
-//   name: string;
-//   songs: object[];
-// }
-
-// interface PlaylistState {
-//   popular: Playlist | null;
-//   pop: Playlist | null;
-//   rock: Playlist | null;
-// }
-
-// const initialState: PlaylistState = {
-//   popular: null,
-//   pop: null,
-//   rock: null,
-// };
-
 export const playlistsApi = createApi({
   reducerPath: 'playlistsApi',
   baseQuery: fetchBaseQuery({
@@ -29,7 +12,7 @@ export const playlistsApi = createApi({
   }),
   endpoints: (builder) => ({
     getView: builder.query({
-      query: (id) => `/playlist/${id}&limit=10`,
+      query: (id) => `/playlist/${id}&limit=50`,
     }),
   }),
 });

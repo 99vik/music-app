@@ -10,7 +10,7 @@ function Main() {
   const { data, status } = useGetViewQuery(playlistIDs[currentView]);
 
   return (
-    <div>
+    <div className="bg-gradient-to-br flex-1 flex flex-col from-[#0b011b] h-screen overflow-y-hidden to-violet-900">
       <p>{currentView}</p>
       {currentView === 'Discover' && <Searchbar />}
       <div>
