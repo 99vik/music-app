@@ -1,36 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { playlistIDs } from './playlistIDs';
 
-interface Playlist {
-  name: string;
-  songs: object[];
-}
+// interface Playlist {
+//   name: string;
+//   songs: object[];
+// }
 
-interface PlaylistState {
-  popular: Playlist | null;
-  pop: Playlist | null;
-  rock: Playlist | null;
-}
+// interface PlaylistState {
+//   popular: Playlist | null;
+//   pop: Playlist | null;
+//   rock: Playlist | null;
+// }
 
-const initialState: PlaylistState = {
-  popular: null,
-  pop: null,
-  rock: null,
-};
-
-export const playlistsSlice = createSlice({
-  name: 'playlists',
-  initialState,
-  reducers: {
-    changePopular: (state) => {
-      state.pop = {
-        name: 'changed',
-        songs: [{}, {}],
-      };
-    },
-  },
-});
+// const initialState: PlaylistState = {
+//   popular: null,
+//   pop: null,
+//   rock: null,
+// };
 
 export const playlistsApi = createApi({
   reducerPath: 'playlistsApi',
@@ -43,15 +28,10 @@ export const playlistsApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getPopular: builder.query({
-      query: () => `/playlist/${playlistIDs.popular}&limit=10`,
-    }),
-    getPop: builder.query({
-      query: () => `/playlist/${playlistIDs.pop}&limit=10`,
+    getView: builder.query({
+      query: (id) => `/playlist/${id}&limit=10`,
     }),
   }),
 });
 
-export const { changePopular } = playlistsSlice.actions;
-export default playlistsSlice.reducer;
-export const { useGetPopularQuery } = playlistsApi;
+export const { useGetViewQuery } = playlistsApi;

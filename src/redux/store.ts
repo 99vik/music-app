@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import playlistsReducer, { playlistsApi } from './playlists/playlistsSlice';
-
+import { playlistsApi } from './playlists/playlistsSlice';
+import currentViewReducer from './currentMainView/currentMainViewSlice';
 export const store = configureStore({
   reducer: {
-    playlists: playlistsReducer,
+    currentView: currentViewReducer,
     [playlistsApi.reducerPath]: playlistsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
