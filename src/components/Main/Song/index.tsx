@@ -11,7 +11,7 @@ function Song({ song }: { song: SongType }) {
       onClick={() => {
         dispatch(setCurrentSong(song));
       }}
-      className="text-white group hover:bg-violet-700 transition cursor-pointer flex flex-col w-[200px] bg-violet-500/30 rounded-lg p-2"
+      className="text-white group hover:bg-violet-600/90 transition cursor-pointer border border-violet-600/60 flex flex-col w-[200px] bg-violet-600/40 rounded-lg p-2"
     >
       <div className="relative">
         <div className="h-full w-full absolute group-hover:bg-neutral-600/50 transition rounded bg-transparent flex justify-center items-center">
