@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface curretMainViewState {
-  view: 'discover' | 'pop' | 'hipHop' | 'rock';
+  view: 'Discover' | 'Pop' | 'Hip-Hop' | 'Rock';
 }
 
 const initialState: curretMainViewState = {
-  view: 'discover',
+  view: 'Discover',
 };
 
 export const curretViewSlice = createSlice({
@@ -13,16 +13,16 @@ export const curretViewSlice = createSlice({
   initialState,
   reducers: {
     changeToDiscover: (state) => {
-      state.view = 'discover';
+      state.view = 'Discover';
     },
     changeToPop: (state) => {
-      state.view = 'pop';
+      state.view = 'Pop';
     },
     changeToHipHop: (state) => {
-      state.view = 'hipHop';
+      state.view = 'Hip-Hop';
     },
     changeToRock: (state) => {
-      state.view = 'rock';
+      state.view = 'Rock';
     },
   },
 });

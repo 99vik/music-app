@@ -1,6 +1,6 @@
 export const playlistIDs = {
-  discover: '3155776842',
-  pop: '1140232701',
-  hipHop: '1677006641',
-  rock: '752286631',
+  Discover: '3155776842',
+  Pop: '1140232701',
+  'Hip-Hop': '1677006641',
+  Rock: '7522866312',
 };
