@@ -7,7 +7,7 @@ import { setIsPlaying } from '../../redux/musicPlayer/musicPlayerSlice';
 import Progressbar from './Progressbar';
 
 function Player() {
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState<number | undefined>(0);
   const currentSong = useSelector((state: RootState) => state.currentSong.song);
   const isPlaying = useSelector(
     (state: RootState) => state.currentSong.isPlaying
@@ -55,6 +55,8 @@ function Player() {
           src={currentSong.preview}
           ref={audioRef}
           onTimeUpdate={() => setTime(audioRef.current?.currentTime)}
+          onEnded={() => dispatch(setIsPlaying(false))}
+          loop={false}
         />
         <Progressbar audio={audioRef.current} />
       </div>

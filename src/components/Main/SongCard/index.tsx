@@ -40,8 +40,8 @@ function Song({ song }: { song: SongType }) {
           className={`h-full w-full absolute ${
             currentSongID === song.id
               ? 'bg-neutral-600/50'
-              : 'group-hover:bg-neutral-600/50'
-          }  transition rounded bg-transparent `}
+              : 'group-hover:bg-neutral-600/50 bg-transparent'
+          }  transition rounded `}
         >
           <FaRegPlayCircle
             className={`h-12 w-12 ${
