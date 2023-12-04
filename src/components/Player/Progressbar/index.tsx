@@ -1,5 +1,8 @@
+import DummyBar from './DummyBar';
+
 function Progressbar({ audio }: { audio: HTMLAudioElement | null }) {
-  if (!audio) return;
+  if (!audio) return <DummyBar />;
+
   const duration = Number.isNaN(audio.duration) ? 0 : audio.duration;
 
   function displayTime(time: number) {
@@ -12,7 +15,7 @@ function Progressbar({ audio }: { audio: HTMLAudioElement | null }) {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex items-center mt-1 text-white text-sm font-semibold">
         <p>{displayTime(audio.currentTime)}</p>
         <input
           onInput={(e) => {
@@ -22,7 +25,7 @@ function Progressbar({ audio }: { audio: HTMLAudioElement | null }) {
           value={audio.currentTime}
           min={0}
           max={Math.round(duration)}
-          className="transition"
+          className="accent-indigo-500 h-[5px] w-[350px] mx-4"
         />
         <p>{displayTime(duration)}</p>
       </div>

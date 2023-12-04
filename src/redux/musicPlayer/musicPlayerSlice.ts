@@ -5,12 +5,14 @@ interface initialStateType {
   song: SongType | null;
   songID: number | null;
   isPlaying: boolean;
+  volume: number;
 }
 
 const initialState: initialStateType = {
   song: null,
   songID: null,
   isPlaying: false,
+  volume: 0.25,
 };
 
 export const currentSongSlice = createSlice({
@@ -24,8 +26,12 @@ export const currentSongSlice = createSlice({
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
     },
+    setVolume: (state, action: PayloadAction<number>) => {
+      state.volume = action.payload;
+    },
   },
 });
 
-export const { setCurrentSong, setIsPlaying } = currentSongSlice.actions;
+export const { setCurrentSong, setIsPlaying, setVolume } =
+  currentSongSlice.actions;
 export default currentSongSlice.reducer;

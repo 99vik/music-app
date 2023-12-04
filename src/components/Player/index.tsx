@@ -5,15 +5,21 @@ import CurrentSongCover from './CurrentSongCover';
 import Controls from './Controls';
 import { setIsPlaying } from '../../redux/musicPlayer/musicPlayerSlice';
 import Progressbar from './Progressbar';
+import Volume from './Volume';
 
 function Player() {
-  const [time, setTime] = useState<number | undefined>(0);
+  const [, setTime] = useState<number | undefined>(0);
   const currentSong = useSelector((state: RootState) => state.currentSong.song);
   const isPlaying = useSelector(
     (state: RootState) => state.currentSong.isPlaying
   );
+  const volume = useSelector((state: RootState) => state.currentSong.volume);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const dispatch = useDispatch();
+
+  if (audioRef.current) {
+    audioRef.current.volume = volume;
+  }
 
   useEffect(() => {
     if (currentSong) {
@@ -43,7 +49,7 @@ function Player() {
   if (!currentSong) return;
 
   return (
-    <div className="fixed bottom-0 px-16 py-2 w-full backdrop-blur rounded-t-2xl  bg-violet-400/30 h-20 grid grid-cols-4 items-center justify-items-center">
+    <div className="fixed bottom-0 px-16 py-2 w-full backdrop-blur rounded-t-2xl border-t border-violet-800/80 bg-violet-950/70 h-20 grid grid-cols-4 items-center justify-items-center">
       <div className="flex justify-self-start gap-3 text-neutral-200">
         <CurrentSongCover currentSong={currentSong} />
       </div>
@@ -60,7 +66,9 @@ function Player() {
         />
         <Progressbar audio={audioRef.current} />
       </div>
-      <p>a</p>
+      <div className="flex justify-self-end gap-3 text-neutral-200">
+        <Volume audio={audioRef.current} />
+      </div>
     </div>
   );
 }

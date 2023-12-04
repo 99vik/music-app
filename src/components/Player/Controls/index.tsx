@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import { FaPause, FaPlay } from 'react-icons/fa6';
 import { RootState } from '../../../redux/store';
 import { setIsPlaying } from '../../../redux/musicPlayer/musicPlayerSlice';
 
@@ -16,14 +16,14 @@ function Controls() {
           onClick={() => dispatch(setIsPlaying(false))}
           className="hover:scale-105"
         >
-          <FaPauseCircle className="text-white h-10 w-10" />
+          <FaPause className="text-white h-9 w-9" />
         </button>
       ) : (
         <button
           onClick={() => dispatch(setIsPlaying(true))}
           className="hover:scale-105"
         >
-          <FaPlayCircle className="text-white h-10 w-10" />
+          <FaPlay className="text-white h-9 w-9" />
         </button>
       )}
     </>
