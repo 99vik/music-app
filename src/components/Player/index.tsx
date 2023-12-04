@@ -1,11 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CurrentSongCover from './CurrentSongCover';
 import Controls from './Controls';
 import { setIsPlaying } from '../../redux/musicPlayer/musicPlayerSlice';
+import Progressbar from './Progressbar';
 
 function Player() {
+  const [time, setTime] = useState(0);
   const currentSong = useSelector((state: RootState) => state.currentSong.song);
   const isPlaying = useSelector(
     (state: RootState) => state.currentSong.isPlaying
@@ -45,14 +47,16 @@ function Player() {
       <div className="flex justify-self-start gap-3 text-neutral-200">
         <CurrentSongCover currentSong={currentSong} />
       </div>
-      <div className="col-span-2">
+      <div className="col-span-2 flex flex-col justify-center items-center">
         <Controls />
         <audio
           autoPlay={isPlaying}
           onLoad={playSong}
           src={currentSong.preview}
           ref={audioRef}
+          onTimeUpdate={() => setTime(audioRef.current?.currentTime)}
         />
+        <Progressbar audio={audioRef.current} />
       </div>
       <p>a</p>
     </div>
