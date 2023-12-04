@@ -1,5 +1,5 @@
-import Song from '../Song';
-import { SongType } from '../Song/songType';
+import Song from '../SongCard';
+import { SongType } from '../SongCard/songType';
 
 function Songlist({ songs }: { songs: SongType[] }) {
   const displayedSongs = songs.map((song) => {

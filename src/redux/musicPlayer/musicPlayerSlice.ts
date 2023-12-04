@@ -1,8 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SongType } from '../../components/Main/Song/songType';
+import { SongType } from '../../components/Main/SongCard/songType';
 
-const initialState: { song: SongType | null } = {
+interface initialStateType {
+  song: SongType | null;
+  isPlaying: boolean;
+}
+
+const initialState: initialStateType = {
   song: null,
+  isPlaying: false,
 };
 
 export const currentSongSlice = createSlice({
@@ -12,8 +18,11 @@ export const currentSongSlice = createSlice({
     setCurrentSong: (state, action: PayloadAction<SongType>) => {
       state.song = action.payload;
     },
+    setIsPlaying: (state, action: PayloadAction<boolean>) => {
+      state.isPlaying = action.payload;
+    },
   },
 });
 
-export const { setCurrentSong } = currentSongSlice.actions;
+export const { setCurrentSong, setIsPlaying } = currentSongSlice.actions;
 export default currentSongSlice.reducer;
