@@ -1,15 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  IoVolumeOff,
-  IoVolumeLow,
-  IoVolumeMedium,
-  IoVolumeHigh,
-} from 'react-icons/io5';
-import { useState } from 'react';
 import { RootState } from '../../../redux/store';
 import { setVolume } from '../../../redux/musicPlayer/musicPlayerSlice';
+import VolumeIcon from './VolumeIcon';
 
-function Volume({ audio }: { audio: HTMLAudioElement | null }) {
+function Volume() {
   const volume = useSelector((state: RootState) => state.currentSong.volume);
   const dispatch = useDispatch();
 
@@ -19,6 +13,7 @@ function Volume({ audio }: { audio: HTMLAudioElement | null }) {
 
   return (
     <>
+      <VolumeIcon volume={volume} />
       <input
         onInput={(e) => {
           handleTimeChange(e);
@@ -28,7 +23,7 @@ function Volume({ audio }: { audio: HTMLAudioElement | null }) {
         value={volume}
         min={0}
         max={1}
-        className="accent-indigo-500 h-[3px] w-[100px] mx-4"
+        className="accent-indigo-500 h-[3px] w-[100px]"
       />
     </>
   );

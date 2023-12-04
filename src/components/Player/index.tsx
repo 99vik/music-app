@@ -66,8 +66,8 @@ function Player() {
         />
         <Progressbar audio={audioRef.current} />
       </div>
-      <div className="flex justify-self-end gap-3 text-neutral-200">
-        <Volume audio={audioRef.current} />
+      <div className="flex items-center justify-self-end relative text-neutral-200">
+        <Volume />
       </div>
     </div>
   );
