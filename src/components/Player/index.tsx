@@ -18,7 +18,7 @@ function Player() {
       dispatch(setIsPlaying(false));
       setTimeout(() => {
         dispatch(setIsPlaying(true));
-      }, 300);
+      }, 150);
     }
   }, [currentSong, dispatch]);
 

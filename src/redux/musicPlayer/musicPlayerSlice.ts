@@ -3,11 +3,13 @@ import { SongType } from '../../components/Main/SongCard/songType';
 
 interface initialStateType {
   song: SongType | null;
+  songID: number | null;
   isPlaying: boolean;
 }
 
 const initialState: initialStateType = {
   song: null,
+  songID: null,
   isPlaying: false,
 };
 
@@ -17,6 +19,7 @@ export const currentSongSlice = createSlice({
   reducers: {
     setCurrentSong: (state, action: PayloadAction<SongType>) => {
       state.song = action.payload;
+      state.songID = action.payload.id;
     },
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;

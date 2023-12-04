@@ -1,31 +1,76 @@
 import { SongType } from './songType';
-import { FaRegPlayCircle } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
-import { setCurrentSong } from '../../../redux/musicPlayer/musicPlayerSlice';
+import { FaRegPlayCircle, FaRegPauseCircle } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setCurrentSong,
+  setIsPlaying,
+} from '../../../redux/musicPlayer/musicPlayerSlice';
+import { RootState } from '../../../redux/store';
 
 function Song({ song }: { song: SongType }) {
   const dispatch = useDispatch();
+  const isPlaying = useSelector(
+    (state: RootState) => state.currentSong.isPlaying
+  );
+  const currentSongID = useSelector(
+    (state: RootState) => state.currentSong.songID
+  );
+
+  function handleClick() {
+    if (song.id !== currentSongID) {
+      dispatch(setCurrentSong(song));
+    } else if (isPlaying) {
+      dispatch(setIsPlaying(false));
+    } else {
+      dispatch(setIsPlaying(true));
+    }
+  }
 
   return (
     <div
-      onClick={() => {
-        dispatch(setCurrentSong(song));
-      }}
-      className="text-white group hover:bg-violet-600/90 transition cursor-pointer border border-violet-600/60 flex flex-col w-[200px] bg-violet-600/40 rounded-lg p-2"
+      onClick={handleClick}
+      className={`text-white group ${
+        currentSongID === song.id
+          ? 'bg-violet-600/90'
+          : 'hover:bg-violet-600/70'
+      }  transition cursor-pointer border border-violet-600/60 flex flex-col w-[200px] bg-violet-600/40 rounded-lg p-2`}
     >
       <div className="relative">
-        <div className="h-full w-full absolute group-hover:bg-neutral-600/50 transition rounded bg-transparent flex justify-center items-center">
-          <FaRegPlayCircle className="h-12 w-12 group-hover:text-violet-200 transition text-violet-200/0" />
+        <div
+          className={`h-full w-full absolute ${
+            currentSongID === song.id
+              ? 'bg-neutral-600/50'
+              : 'group-hover:bg-neutral-600/50'
+          }  transition rounded bg-transparent `}
+        >
+          <FaRegPlayCircle
+            className={`h-12 w-12 ${
+              currentSongID === song.id
+                ? isPlaying
+                  ? 'text-violet-200/0'
+                  : 'text-violet-200'
+                : 'group-hover:text-violet-200 text-violet-200/0'
+            }  transition absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]`}
+          />
+          <FaRegPauseCircle
+            className={`h-12 w-12 ${
+              currentSongID === song.id
+                ? isPlaying
+                  ? 'text-violet-200'
+                  : 'text-violet-200/0'
+                : 'text-violet-200/0'
+            }  transition absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]`}
+          />
         </div>
         <img src={song.album.cover_medium} alt="" className="w-full rounded" />
       </div>
-      <div className="flex flex-col  flex-1 justify-between">
-        <p className="text-sm mt-4 px-1 group-hover:text-white font-semibold text-neutral-200">
-          {song.title}
-        </p>
-        <p className="text-sm my-2 px-1 group-hover:text-white text-neutral-300">
-          {song.artist.name}
-        </p>
+      <div
+        className={`flex flex-col  flex-1 justify-between ${
+          currentSongID === song.id ? 'text-white' : 'text-neutral-200'
+        }  transition`}
+      >
+        <p className="text-sm mt-4 px-1 font-semibold ">{song.title}</p>
+        <p className="text-sm my-2 px-1 ">{song.artist.name}</p>
       </div>
     </div>
   );
