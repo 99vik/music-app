@@ -23,9 +23,10 @@ function Progressbar({ audio }: { audio: HTMLAudioElement | null }) {
           }}
           type="range"
           value={audio.currentTime}
+          step={0.1}
           min={0}
           max={Math.round(duration)}
-          className="accent-indigo-500 h-[5px] w-[350px] mx-4"
+          className="accent-indigo-500 h-[5px] w-[350px] mx-4 transiton"
         />
         <p>{displayTime(duration)}</p>
       </div>

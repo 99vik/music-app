@@ -7,7 +7,13 @@ import {
 } from '../../../redux/musicPlayer/musicPlayerSlice';
 import { RootState } from '../../../redux/store';
 
-function Song({ song }: { song: SongType }) {
+function Song({
+  song,
+  setPlaylist,
+}: {
+  song: SongType;
+  setPlaylist: () => void;
+}) {
   const dispatch = useDispatch();
   const isPlaying = useSelector(
     (state: RootState) => state.currentSong.isPlaying
@@ -17,6 +23,7 @@ function Song({ song }: { song: SongType }) {
   );
 
   function handleClick() {
+    setPlaylist();
     if (song.id !== currentSongID) {
       dispatch(setCurrentSong(song));
     } else if (isPlaying) {
