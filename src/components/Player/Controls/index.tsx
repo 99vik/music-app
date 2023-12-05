@@ -6,33 +6,25 @@ import { ImLoop } from 'react-icons/im';
 import { RootState } from '../../../redux/store';
 import {
   setIsPlaying,
-  setCurrentSong,
   toggleRandom,
   toggleSongLoop,
 } from '../../../redux/musicPlayer/musicPlayerSlice';
-import { nextSong, previousSong } from './controlLogic';
 
-function Controls() {
+function Controls({
+  handleNextSong,
+  handlePreviousSong,
+  random,
+  songLoop,
+}: {
+  handleNextSong: () => void;
+  handlePreviousSong: () => void;
+  random: boolean;
+  songLoop: boolean;
+}) {
   const dispatch = useDispatch();
   const isPlaying = useSelector(
     (state: RootState) => state.currentSong.isPlaying
   );
-  const playlist = useSelector(
-    (state: RootState) => state.currentSong.playlist.tracks.data
-  );
-  const currentSong = useSelector((state: RootState) => state.currentSong.song);
-  const random = useSelector((state: RootState) => state.currentSong.random);
-  const songLoop = useSelector(
-    (state: RootState) => state.currentSong.songLoop
-  );
-
-  function handleNextSong() {
-    dispatch(setCurrentSong(nextSong(playlist, currentSong!)));
-  }
-
-  function handlePreviousSong() {
-    dispatch(setCurrentSong(previousSong(playlist, currentSong!)));
-  }
 
   function handleToggleRandom() {
     dispatch(toggleRandom());
