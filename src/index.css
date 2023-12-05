@@ -3,14 +3,35 @@
 @tailwind utilities;
 
 @layer utilities {
-      /* Hide scrollbar for Chrome, Safari and Opera */
       .no-scrollbar::-webkit-scrollbar {
           display: none;
       }
-
-      /* Hide scrollbar for IE, Edge and Firefox */
       .no-scrollbar {
           -ms-overflow-style: none;  /* IE and Edge */
           scrollbar-width: none;  /* Firefox */
+      }
+  }
+
+  @layer components {
+    .appear {
+      animation-name: appear-animation;
+      animation-timing-function: ease-out;
+      animation-duration: 0.25s;
+    }
+    
+    @keyframes appear-animation {
+      0%   {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    .disappear {
+        animation-name: disappear-animation;
+        animation-timing-function: ease-out;
+        animation-duration: 0.3s;
+      }
+      
+      @keyframes disappear-animation {
+        0%   {opacity: 1;}
+        100% {opacity: 0;}
       }
   }

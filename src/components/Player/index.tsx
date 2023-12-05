@@ -6,6 +6,7 @@ import Controls from './Controls';
 import {
   setIsPlaying,
   setCurrentSong,
+  resetState,
 } from '../../redux/musicPlayer/musicPlayerSlice';
 import Progressbar from './Progressbar';
 import Volume from './Volume';
@@ -14,6 +15,7 @@ import {
   getPreviousSong,
   getRandomSong,
 } from './Controls/controlLogic';
+import { IoClose } from 'react-icons/io5';
 
 function Player() {
   const [, setTime] = useState<number | undefined>(0);
@@ -31,6 +33,7 @@ function Player() {
   );
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const dispatch = useDispatch();
+  const playerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (currentSong) {
@@ -77,6 +80,13 @@ function Player() {
     }
   }
 
+  function closePlayer() {
+    playerRef.current?.classList.add('disappear');
+    setTimeout(() => {
+      dispatch(resetState());
+    }, 250);
+  }
+
   function handlePreviousSongButton() {
     audioRef.current!.currentTime <= 3
       ? previousSong()
@@ -90,7 +100,10 @@ function Player() {
   if (!currentSong) return;
 
   return (
-    <div className="fixed bottom-0 px-16 py-2 w-full backdrop-blur rounded-t-2xl border-t border-violet-800/80 bg-violet-950/70 h-20 grid grid-cols-4 items-center justify-items-center">
+    <div
+      ref={playerRef}
+      className="fixed appear bottom-0 px-16 py-2 w-full backdrop-blur rounded-t-2xl border-t border-violet-800/80 bg-violet-950/70 h-20 grid grid-cols-4 items-center justify-items-center"
+    >
       <div className="flex justify-self-start gap-3 text-neutral-200">
         <CurrentSongCover currentSong={currentSong} />
       </div>
@@ -115,6 +128,9 @@ function Player() {
       <div className="flex items-center justify-self-end relative text-neutral-200">
         <Volume />
       </div>
+      <button onClick={closePlayer} className="absolute top-1 right-2">
+        <IoClose className="h-6 w-6 transition text-neutral-300 hover:text-white " />
+      </button>
     </div>
   );
 }

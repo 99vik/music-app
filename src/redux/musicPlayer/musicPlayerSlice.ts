@@ -52,6 +52,9 @@ export const currentSongSlice = createSlice({
     toggleSongLoop: (state) => {
       state.songLoop = !state.songLoop;
     },
+    resetState: () => {
+      return initialState;
+    },
   },
 });
 
@@ -62,5 +65,6 @@ export const {
   setVolume,
   toggleRandom,
   toggleSongLoop,
+  resetState,
 } = currentSongSlice.actions;
 export default currentSongSlice.reducer;
