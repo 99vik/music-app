@@ -12,6 +12,8 @@ interface initialStateType {
   songID: number | null;
   isPlaying: boolean;
   volume: number;
+  random: boolean;
+  songLoop: boolean;
 }
 
 const initialState: initialStateType = {
@@ -23,6 +25,8 @@ const initialState: initialStateType = {
   songID: null,
   isPlaying: false,
   volume: 0.25,
+  random: false,
+  songLoop: false,
 };
 
 export const currentSongSlice = createSlice({
@@ -42,9 +46,21 @@ export const currentSongSlice = createSlice({
     setVolume: (state, action: PayloadAction<number>) => {
       state.volume = action.payload;
     },
+    toggleRandom: (state) => {
+      state.random = !state.random;
+    },
+    toggleSongLoop: (state) => {
+      state.songLoop = !state.songLoop;
+    },
   },
 });
 
-export const { setCurrentSong, setCurrentPlaylist, setIsPlaying, setVolume } =
-  currentSongSlice.actions;
+export const {
+  setCurrentSong,
+  setCurrentPlaylist,
+  setIsPlaying,
+  setVolume,
+  toggleRandom,
+  toggleSongLoop,
+} = currentSongSlice.actions;
 export default currentSongSlice.reducer;
