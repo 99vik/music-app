@@ -5,6 +5,7 @@ import { playlistIDs } from '../../redux/playlists/playlistIDs';
 import { setCurrentPlaylist } from '../../redux/musicPlayer/musicPlayerSlice';
 import Searchbar from './Searchbar';
 import Songlist from './SongList';
+import LoadingCards from './LoadingCards';
 
 function Main() {
   const currentView = useSelector((state: RootState) => state.currentView.view);
@@ -28,9 +29,11 @@ function Main() {
       {currentView === 'Discover' && <Searchbar />}
       <div>
         {status === 'pending' ? (
-          'Loading..'
+          <LoadingCards />
         ) : data.error ? (
-          'error'
+          <p className="text-white text-xl font-semibold text-center mt-20">
+            Error loading music..
+          </p>
         ) : (
           <Songlist songs={data.tracks.data} setPlaylist={setPlaylist} />
         )}
