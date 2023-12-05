@@ -9,7 +9,11 @@ import {
 } from '../../redux/musicPlayer/musicPlayerSlice';
 import Progressbar from './Progressbar';
 import Volume from './Volume';
-import { nextSong, previousSong } from './Controls/controlLogic';
+import {
+  getNextSong,
+  getPreviousSong,
+  getRandomSong,
+} from './Controls/controlLogic';
 
 function Player() {
   const [, setTime] = useState<number | undefined>(0);
@@ -53,16 +57,28 @@ function Player() {
     audioRef.current?.pause();
   }
 
-  function handleNextSong() {
-    dispatch(setCurrentSong(nextSong(currentPlaylist, currentSong!)));
+  function nextSong() {
+    dispatch(setCurrentSong(getNextSong(currentPlaylist, currentSong!)));
   }
 
-  function handlePreviousSong() {
-    dispatch(setCurrentSong(previousSong(currentPlaylist, currentSong!)));
+  function previousSong() {
+    dispatch(setCurrentSong(getPreviousSong(currentPlaylist, currentSong!)));
+  }
+
+  function randomSong() {
+    dispatch(setCurrentSong(getRandomSong(currentPlaylist, currentSong!)));
   }
 
   function handleEnded() {
-    console.log('ended');
+    if (random) {
+      randomSong();
+    } else {
+      nextSong();
+    }
+  }
+
+  function handlePreviousSongButton() {
+    previousSong();
   }
 
   if (audioRef.current) {
@@ -78,8 +94,8 @@ function Player() {
       </div>
       <div className="col-span-2 flex flex-col justify-center items-center">
         <Controls
-          handleNextSong={handleNextSong}
-          handlePreviousSong={handlePreviousSong}
+          handleNextSongButton={handleEnded}
+          handlePreviousSongButton={handlePreviousSongButton}
           random={random}
           songLoop={songLoop}
         />
@@ -90,7 +106,7 @@ function Player() {
           ref={audioRef}
           onTimeUpdate={() => setTime(audioRef.current?.currentTime)}
           onEnded={handleEnded}
-          loop={false}
+          loop={songLoop}
         />
         <Progressbar audio={audioRef.current} />
       </div>

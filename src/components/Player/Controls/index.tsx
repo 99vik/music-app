@@ -11,13 +11,13 @@ import {
 } from '../../../redux/musicPlayer/musicPlayerSlice';
 
 function Controls({
-  handleNextSong,
-  handlePreviousSong,
+  handleNextSongButton,
+  handlePreviousSongButton,
   random,
   songLoop,
 }: {
-  handleNextSong: () => void;
-  handlePreviousSong: () => void;
+  handleNextSongButton: () => void;
+  handlePreviousSongButton: () => void;
   random: boolean;
   songLoop: boolean;
 }) {
@@ -44,7 +44,7 @@ function Controls({
             }`}
           />
         </button>
-        <button onClick={handlePreviousSong} className="hover:scale-105">
+        <button onClick={handlePreviousSongButton} className="hover:scale-105">
           <FaStepBackward className="text-white h-6 w-6" />
         </button>
         {isPlaying ? (
@@ -62,7 +62,7 @@ function Controls({
             <FaPlay className="text-white h-10 w-10" />
           </button>
         )}
-        <button onClick={handleNextSong} className="hover:scale-105">
+        <button onClick={handleNextSongButton} className="hover:scale-105">
           <FaStepForward className="text-white h-6 w-6" />
         </button>
         <button onClick={handleToggleSongLoop}>
