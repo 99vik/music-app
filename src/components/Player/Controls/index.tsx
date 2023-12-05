@@ -2,19 +2,35 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaPause, FaPlay } from 'react-icons/fa6';
 import { FaStepBackward, FaStepForward } from 'react-icons/fa';
 import { RootState } from '../../../redux/store';
-import { setIsPlaying } from '../../../redux/musicPlayer/musicPlayerSlice';
+import {
+  setIsPlaying,
+  setCurrentSong,
+} from '../../../redux/musicPlayer/musicPlayerSlice';
+import { nextSong, previousSong } from './controlLogic';
 
 function Controls() {
   const dispatch = useDispatch();
   const isPlaying = useSelector(
     (state: RootState) => state.currentSong.isPlaying
   );
+  const playlist = useSelector(
+    (state: RootState) => state.currentSong.playlist.tracks.data
+  );
+  const currentSong = useSelector((state: RootState) => state.currentSong.song);
+
+  function handleNextSong() {
+    dispatch(setCurrentSong(nextSong(playlist, currentSong!)));
+  }
+
+  function handlePreviousSong() {
+    dispatch(setCurrentSong(previousSong(playlist, currentSong!)));
+  }
 
   return (
     <>
       <div className="w-full grid grid-cols-5 justify-items-center">
         <button>a</button>
-        <button onClick={() => {}} className="hover:scale-105">
+        <button onClick={handlePreviousSong} className="hover:scale-105">
           <FaStepBackward className="text-white h-6 w-6" />
         </button>
         {isPlaying ? (
@@ -32,7 +48,7 @@ function Controls() {
             <FaPlay className="text-white h-10 w-10" />
           </button>
         )}
-        <button onClick={() => {}} className="hover:scale-105">
+        <button onClick={handleNextSong} className="hover:scale-105">
           <FaStepForward className="text-white h-6 w-6" />
         </button>
         <button>a</button>

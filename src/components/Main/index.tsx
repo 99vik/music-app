@@ -19,7 +19,6 @@ function Main() {
       dispatch(setCurrentPlaylist(data));
     }
   }
-  console.log(currentPlaylist);
 
   return (
     <div className="bg-gradient-to-br p-4 flex-1 flex flex-col from-black h-screen from-20% overflow-y-hidden to-violet-900">

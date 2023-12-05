@@ -3,7 +3,7 @@ import { SongType } from '../../components/Main/SongCard/songType';
 
 interface Playlist {
   id: number | null;
-  tracks: SongType[];
+  tracks: { data: SongType[] };
 }
 
 interface initialStateType {
@@ -18,7 +18,7 @@ const initialState: initialStateType = {
   song: null,
   playlist: {
     id: null,
-    tracks: [],
+    tracks: { data: [] },
   },
   songID: null,
   isPlaying: false,
