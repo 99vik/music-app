@@ -78,7 +78,9 @@ function Player() {
   }
 
   function handlePreviousSongButton() {
-    previousSong();
+    audioRef.current!.currentTime <= 3
+      ? previousSong()
+      : (audioRef.current!.currentTime = 0.0);
   }
 
   if (audioRef.current) {

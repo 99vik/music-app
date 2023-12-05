@@ -44,26 +44,26 @@ function Controls({
             }`}
           />
         </button>
-        <button onClick={handlePreviousSongButton} className="hover:scale-105">
-          <FaStepBackward className="text-white h-6 w-6" />
+        <button onClick={handlePreviousSongButton} className="group">
+          <FaStepBackward className="text-white group-hover:text-white/60 h-6 w-6" />
         </button>
         {isPlaying ? (
           <button
             onClick={() => dispatch(setIsPlaying(false))}
-            className="hover:scale-105 col-span-2"
+            className="group col-span-2"
           >
-            <FaPause className="text-white h-10 w-10" />
+            <FaPause className="text-white group-hover:text-white/60 h-10 w-10" />
           </button>
         ) : (
           <button
             onClick={() => dispatch(setIsPlaying(true))}
-            className="hover:scale-105 col-span-2"
+            className="group col-span-2"
           >
-            <FaPlay className="text-white h-10 w-10" />
+            <FaPlay className="text-white group-hover:text-white/60 h-10 w-10" />
           </button>
         )}
-        <button onClick={handleNextSongButton} className="hover:scale-105">
-          <FaStepForward className="text-white h-6 w-6" />
+        <button onClick={handleNextSongButton} className="group">
+          <FaStepForward className="text-white group-hover:text-white/60 h-6 w-6" />
         </button>
         <button onClick={handleToggleSongLoop}>
           <ImLoop
