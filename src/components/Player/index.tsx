@@ -19,21 +19,21 @@ import { IoClose } from 'react-icons/io5';
 
 function Player() {
   const [, setTime] = useState<number | undefined>(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const playerRef = useRef<HTMLDivElement | null>(null);
   const currentSong = useSelector((state: RootState) => state.currentSong.song);
+  const volume = useSelector((state: RootState) => state.currentSong.volume);
+  const random = useSelector((state: RootState) => state.currentSong.random);
   const currentPlaylist = useSelector(
     (state: RootState) => state.currentSong.playlist.tracks.data
   );
   const isPlaying = useSelector(
     (state: RootState) => state.currentSong.isPlaying
   );
-  const volume = useSelector((state: RootState) => state.currentSong.volume);
-  const random = useSelector((state: RootState) => state.currentSong.random);
   const songLoop = useSelector(
     (state: RootState) => state.currentSong.songLoop
   );
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const dispatch = useDispatch();
-  const playerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (currentSong) {

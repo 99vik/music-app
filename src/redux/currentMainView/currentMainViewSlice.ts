@@ -1,11 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface curretMainViewState {
   view: 'Discover' | 'Pop' | 'Hip-Hop' | 'Rock';
+  search: string | null;
 }
 
 const initialState: curretMainViewState = {
   view: 'Discover',
+  search: null,
 };
 
 export const curretViewSlice = createSlice({
@@ -24,9 +26,17 @@ export const curretViewSlice = createSlice({
     changeToRock: (state) => {
       state.view = 'Rock';
     },
+    setSearchQuery: (state, action: PayloadAction<string | null>) => {
+      state.search = action.payload;
+    },
   },
 });
 
-export const { changeToDiscover, changeToPop, changeToHipHop, changeToRock } =
-  curretViewSlice.actions;
+export const {
+  changeToDiscover,
+  changeToPop,
+  changeToHipHop,
+  changeToRock,
+  setSearchQuery,
+} = curretViewSlice.actions;
 export default curretViewSlice.reducer;

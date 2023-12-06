@@ -12,7 +12,11 @@ function Main() {
   const currentPlaylist = useSelector(
     (state: RootState) => state.currentSong.playlist
   );
+  const searchQuery = useSelector(
+    (state: RootState) => state.currentView.search
+  );
   const { data, status } = useGetViewQuery(playlistIDs[currentView]);
+
   const dispatch = useDispatch();
 
   function setPlaylist() {
@@ -20,6 +24,8 @@ function Main() {
       dispatch(setCurrentPlaylist(data));
     }
   }
+
+  console.log(searchQuery);
 
   return (
     <div className="bg-gradient-to-br p-4 flex-1 flex flex-col from-black h-screen from-20% overflow-y-hidden to-violet-900">
