@@ -40,7 +40,7 @@ function Song({
         currentSongID === song.id
           ? 'bg-violet-600/90'
           : 'hover:bg-violet-600/70'
-      }  transition cursor-pointer border border-violet-600/60 flex flex-col w-[200px] bg-violet-600/40 rounded-lg p-2`}
+      }  transition cursor-pointer border border-violet-600/60 flex flex-col w-[200px] h-[290px] bg-violet-600/40 rounded-lg p-2`}
     >
       <div className="relative">
         <div
@@ -72,11 +72,11 @@ function Song({
         <img src={song.album.cover_medium} alt="" className="w-full rounded" />
       </div>
       <div
-        className={`flex flex-col  flex-1 justify-between ${
+        className={`flex flex-col  flex-1 justify-center ${
           currentSongID === song.id ? 'text-white' : 'text-neutral-200'
         }  transition`}
       >
-        <p className="text-sm mt-4 px-1 font-semibold ">{song.title}</p>
+        <p className="text-sm mt-1 px-1 font-semibold ">{song.title_short}</p>
         <p className="text-sm my-2 px-1 ">{song.artist.name}</p>
       </div>
     </div>

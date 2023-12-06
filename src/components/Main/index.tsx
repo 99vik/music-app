@@ -38,7 +38,11 @@ function Main() {
   }, [searchQuery]);
 
   function setPlaylist() {
-    if (currentPlaylist.id !== data) {
+    if (currentView === 'Discover' && searchQuery) {
+      dispatch(setCurrentPlaylist(null));
+      return;
+    }
+    if (currentPlaylist.id !== data.id) {
       dispatch(setCurrentPlaylist(data));
     }
   }

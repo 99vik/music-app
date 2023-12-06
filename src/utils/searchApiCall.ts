@@ -1,6 +1,6 @@
 export async function searchSong(query: string) {
   const response = fetch(
-    `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}&limit=10`,
+    `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}&limit=15`,
     {
       method: 'GET',
       headers: {

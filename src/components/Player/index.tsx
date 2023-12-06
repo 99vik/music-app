@@ -61,10 +61,19 @@ function Player() {
   }
 
   function nextSong() {
+    if (currentPlaylist.length === 0) {
+      audioRef.current!.currentTime = 0.0;
+      audioRef.current!.play();
+      return;
+    }
     dispatch(setCurrentSong(getNextSong(currentPlaylist, currentSong!)));
   }
 
   function previousSong() {
+    if (currentPlaylist.length === 0) {
+      audioRef.current!.currentTime = 0.0;
+      return;
+    }
     dispatch(setCurrentSong(getPreviousSong(currentPlaylist, currentSong!)));
   }
 
@@ -73,7 +82,7 @@ function Player() {
   }
 
   function handleEnded() {
-    if (random) {
+    if (random && currentPlaylist.length !== 0) {
       randomSong();
     } else {
       nextSong();

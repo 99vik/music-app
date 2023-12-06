@@ -10,6 +10,6 @@ export interface SongType {
   album: album;
   artist: artist;
   id: number;
-  title: string;
+  title_short: string;
   preview: string;
 }

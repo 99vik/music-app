@@ -37,8 +37,15 @@ export const currentSongSlice = createSlice({
       state.song = action.payload;
       state.songID = action.payload.id;
     },
-    setCurrentPlaylist: (state, action: PayloadAction<Playlist>) => {
-      state.playlist = action.payload;
+    setCurrentPlaylist: (state, action: PayloadAction<Playlist | null>) => {
+      if (action.payload === null) {
+        state.playlist = {
+          id: null,
+          tracks: { data: [] },
+        };
+      } else {
+        state.playlist = action.payload;
+      }
     },
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
