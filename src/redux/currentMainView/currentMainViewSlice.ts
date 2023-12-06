@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface curretMainViewState {
-  view: 'Discover' | 'Pop' | 'Hip-Hop' | 'Rock';
+  view: 'Discover' | 'Pop' | 'Hip-Hop' | 'Rock' | 'EDM' | 'Jazz' | 'R&B';
   search: string | null;
 }
 
@@ -26,6 +26,15 @@ export const curretViewSlice = createSlice({
     changeToRock: (state) => {
       state.view = 'Rock';
     },
+    changeToRnB: (state) => {
+      state.view = 'R&B';
+    },
+    changeToJazz: (state) => {
+      state.view = 'Jazz';
+    },
+    changeToEDM: (state) => {
+      state.view = 'EDM';
+    },
     setSearchQuery: (state, action: PayloadAction<string | null>) => {
       state.search = action.payload;
     },
@@ -37,6 +46,9 @@ export const {
   changeToPop,
   changeToHipHop,
   changeToRock,
+  changeToRnB,
+  changeToEDM,
+  changeToJazz,
   setSearchQuery,
 } = curretViewSlice.actions;
 export default curretViewSlice.reducer;

@@ -1,7 +1,10 @@
 import {
   changeToDiscover,
+  changeToEDM,
   changeToHipHop,
+  changeToJazz,
   changeToPop,
+  changeToRnB,
   changeToRock,
 } from '../../redux/currentMainView/currentMainViewSlice';
 import { ActionCreatorWithoutPayload } from '@reduxjs/toolkit/dist/createAction';
@@ -29,5 +32,17 @@ export const links: linksType = [
   {
     name: 'Rock',
     dispatchAction: changeToRock,
+  },
+  {
+    name: 'R&B',
+    dispatchAction: changeToRnB,
+  },
+  {
+    name: 'Jazz',
+    dispatchAction: changeToJazz,
+  },
+  {
+    name: 'EDM',
+    dispatchAction: changeToEDM,
   },
 ];
