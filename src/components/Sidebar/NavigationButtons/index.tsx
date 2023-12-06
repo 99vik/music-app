@@ -2,7 +2,7 @@ import { links } from '../links';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-function NavigationButtons() {
+function NavigationButtons({ closeNav }: { closeNav: () => void }) {
   const dispatch = useDispatch();
   const [activeButton, setActiveButton] = useState('Discover');
 
@@ -18,6 +18,7 @@ function NavigationButtons() {
         onClick={() => {
           dispatch(link.dispatchAction());
           setActiveButton(link.name);
+          closeNav();
         }}
       >
         {link.name}

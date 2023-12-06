@@ -3,7 +3,7 @@ function LoadingCards() {
     return (
       <div
         key={i}
-        className="bg-violet-700/20 animate-pulse w-[200px] h-[290px] rounded-lg"
+        className="bg-violet-700/20 animate-pulse w-[200px] h-[290px] rounded-lg max-[470px]:p-1 max-[470px]:h-[260px] max-[470px]:w-[180px]"
       ></div>
     );
   });

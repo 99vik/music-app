@@ -34,4 +34,15 @@
         0%   {opacity: 1;}
         100% {opacity: 0;}
       }
+
+      .slideIn {
+        animation-name: slide-in-animation;
+        animation-timing-function: ease-out;
+        animation-duration: 0.25s;
+      }
+      
+      @keyframes slide-in-animation {
+        0%   {transform: translateX(-100%);}
+        100% {}
+      }
   }
