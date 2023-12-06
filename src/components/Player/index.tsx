@@ -111,7 +111,7 @@ function Player() {
   return (
     <div
       ref={playerRef}
-      className="fixed appear bottom-0 max-[850px]:px-4 max-[1100px]:px-8 px-16 py-2 w-full max-[850px]:h-[200px] max-[950px]:h-[110px] h-[90px] backdrop-blur rounded-t-2xl border-t border-violet-800/80 bg-violet-950/70 max-[850px]:grid-cols-1 grid grid-cols-4 items-center justify-items-center"
+      className="fixed appear bottom-0 max-[850px]:px-4 max-[1100px]:px-8 px-16 py-2 w-full max-[850px]:h-[150px] max-[950px]:h-[110px] h-[90px] backdrop-blur rounded-t-2xl border-t border-violet-800/80 bg-violet-950/70 max-[850px]:grid-cols-1 grid grid-cols-4 items-center justify-items-center"
     >
       <div className="flex max-[850px]:justify-self-center justify-self-start gap-3 text-neutral-200">
         <CurrentSongCover currentSong={currentSong} />
