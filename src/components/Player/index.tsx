@@ -111,9 +111,9 @@ function Player() {
   return (
     <div
       ref={playerRef}
-      className="fixed appear bottom-0 px-16 py-2 w-full backdrop-blur rounded-t-2xl border-t border-violet-800/80 bg-violet-950/70 h-20 grid grid-cols-4 items-center justify-items-center"
+      className="fixed appear bottom-0 max-[850px]:px-4 max-[1100px]:px-8 px-16 py-2 w-full max-[850px]:h-[200px] max-[950px]:h-[110px] h-[90px] backdrop-blur rounded-t-2xl border-t border-violet-800/80 bg-violet-950/70 max-[850px]:grid-cols-1 grid grid-cols-4 items-center justify-items-center"
     >
-      <div className="flex justify-self-start gap-3 text-neutral-200">
+      <div className="flex max-[850px]:justify-self-center justify-self-start gap-3 text-neutral-200">
         <CurrentSongCover currentSong={currentSong} />
       </div>
       <div className="col-span-2 flex flex-col justify-center items-center">
@@ -134,7 +134,7 @@ function Player() {
         />
         <Progressbar audio={audioRef.current} />
       </div>
-      <div className="flex items-center justify-self-end relative text-neutral-200">
+      <div className="flex items-center max-[850px]:hidden justify-self-end relative text-neutral-200">
         <Volume />
       </div>
       <button onClick={closePlayer} className="absolute top-1 right-2">

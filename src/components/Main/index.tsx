@@ -48,7 +48,7 @@ function Main() {
   }
 
   return (
-    <div className="bg-gradient-to-br p-4 flex-1 flex flex-col from-black h-screen from-20% overflow-y-hidden to-violet-900">
+    <div className="bg-gradient-to-br p-4 max-[470px]:p-1 flex-1 flex flex-col from-black h-screen from-20% overflow-y-hidden to-violet-900">
       <p className="text-white mt-4 text-3xl text-center font-semibold">
         {currentView}
       </p>

@@ -40,7 +40,7 @@ function Song({
         currentSongID === song.id
           ? 'bg-violet-600/90'
           : 'hover:bg-violet-600/70'
-      }  transition cursor-pointer border border-violet-600/60 flex flex-col w-[200px] h-[290px] bg-violet-600/40 rounded-lg p-2`}
+      }  transition cursor-pointer border border-violet-600/60 flex flex-col w-[200px] h-[290px] bg-violet-600/40 p-2 max-[470px]:p-1 max-[470px]:h-[260px] max-[470px]:w-[180px] rounded-lg `}
     >
       <div className="relative">
         <div

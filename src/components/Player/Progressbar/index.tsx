@@ -15,7 +15,7 @@ function Progressbar({ audio }: { audio: HTMLAudioElement | null }) {
 
   return (
     <>
-      <div className="flex w-[420px] items-center mt-1 text-white text-sm font-semibold">
+      <div className="flex w-[420px] justify-center items-center mt-1 text-white text-sm font-semibold">
         <p>{displayTime(audio.currentTime)}</p>
         <input
           onInput={(e) => {
@@ -26,7 +26,7 @@ function Progressbar({ audio }: { audio: HTMLAudioElement | null }) {
           step={0.1}
           min={0}
           max={Math.round(duration)}
-          className="accent-indigo-500 h-[5px] w-[350px] mx-4 transiton"
+          className="accent-indigo-500 h-[5px] max-[850px]:w-[270px] max-[950px]:w-[200px] w-[350px] mx-4 transiton"
         />
         <p>{displayTime(duration)}</p>
       </div>

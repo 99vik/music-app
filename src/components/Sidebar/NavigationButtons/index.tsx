@@ -14,7 +14,7 @@ function NavigationButtons() {
           activeButton === link.name
             ? 'bg-white/10 text-violet-500'
             : 'hover:bg-white/5 hover:text-white'
-        }   transition py-1 px-2 w-full text-left rounded-lg`}
+        }   transition py-1 px-2 w-full text-left max-[500px]:text-2xl max-[700px]:text-center rounded-lg`}
         onClick={() => {
           dispatch(link.dispatchAction());
           setActiveButton(link.name);

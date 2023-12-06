@@ -9,7 +9,7 @@ function CurrentSongCover({ currentSong }: { currentSong: SongType }) {
         className="h-16 rounded-full"
       />
       <div className="text-sm flex flex-col justify-center">
-        <p className="font-bold ">{currentSong.title}</p>
+        <p className="font-bold ">{currentSong.title_short}</p>
         <p>{currentSong.artist.name}</p>
       </div>
     </>
