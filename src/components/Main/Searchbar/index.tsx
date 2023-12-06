@@ -14,8 +14,8 @@ function Searchbar() {
   let timer: ReturnType<typeof setTimeout>;
   const dispatch = useDispatch();
 
-  function handleSearch(value: string) {
-    if (value.length < 3) {
+  function handleSearch(value: string | null) {
+    if (value!.length < 3) {
       clearSearch();
       return;
     }
@@ -57,7 +57,9 @@ function Searchbar() {
           searchDebounceRef.current!.value = '';
           clearSearch();
         }}
-        className="absolute right-1 text-white hover:text-white/50 transition"
+        className={`absolute right-1 ${
+          searchQuery ? 'text-white hover:text-white/50' : 'text-white/0'
+        }  transition`}
       >
         <IoClose className="w-5 h-5" />
       </button>
