@@ -45,6 +45,7 @@ function Searchbar() {
         <FiSearch className="text-white w-5 h-5 ml-4" />
       </label>
       <input
+        defaultValue={searchQuery ? searchQuery : ''}
         ref={searchDebounceRef}
         onChange={handleSearchChange}
         id="search"

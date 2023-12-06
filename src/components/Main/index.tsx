@@ -7,6 +7,8 @@ import Searchbar from './Searchbar';
 import Songlist from './SongList';
 import LoadingCards from './LoadingCards';
 import { useState, useEffect } from 'react';
+import { SongType } from './SongCard/songType';
+import { searchSong } from '../../utils/searchApiCall';
 
 function Main() {
   const currentView = useSelector((state: RootState) => state.currentView.view);
@@ -17,29 +19,21 @@ function Main() {
     (state: RootState) => state.currentView.search
   );
   const { data, status } = useGetViewQuery(playlistIDs[currentView]);
-  const [searchData, setSearchData] = useState(null);
+  const [searchData, setSearchData] = useState<SongType[] | null>(null);
   const [searchDataLoader, setSearchDataLoader] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     async function getQuery() {
-      const response = await fetch(
-        `https://deezerdevs-deezer.p.rapidapi.com/search?q=${searchQuery}&limit=10`,
-        {
-          method: 'GET',
-          headers: {
-            'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API_KEY,
-            'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-          },
-        }
-      );
-      const data = await response.json();
+      const data = await searchSong(searchQuery!);
       setSearchData(data.data);
       setSearchDataLoader(false);
     }
     if (searchQuery) {
       setSearchDataLoader(true);
       getQuery();
+    } else {
+      setSearchData(null);
     }
   }, [searchQuery]);
 
@@ -56,16 +50,15 @@ function Main() {
       </p>
       {currentView === 'Discover' && <Searchbar />}
       <div>
-        {console.log(searchDataLoader, searchData)}
-        {currentView === 'Discover' && searchQuery ? (
-          searchDataLoader ? (
-            <LoadingCards />
-          ) : searchData ? (
-            <Songlist songs={searchData} setPlaylist={setPlaylist} />
+        {currentView === 'Discover' && searchData ? (
+          searchData.length === 0 ? (
+            <p className="text-white text-xl font-semibold text-center mt-20">
+              No songs found..
+            </p>
           ) : (
-            <p>errir</p>
+            <Songlist songs={searchData} setPlaylist={setPlaylist} />
           )
-        ) : status === 'pending' ? (
+        ) : status === 'pending' || searchDataLoader ? (
           <LoadingCards />
         ) : data.error ? (
           <p className="text-white text-xl font-semibold text-center mt-20">
